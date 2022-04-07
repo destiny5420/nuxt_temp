@@ -1,0 +1,269 @@
+@import '~assets/stylesheets/_config.scss'
+
+
+/*
+ * 斷點
+ */
+// +media-up(sm)
+@mixin media-up($breakpoint)
+    $breakpoint-value: map-get($breakpoints, $breakpoint)
+    @media screen and (min-width: $breakpoint-value)
+        @content
+
+
+// +media-up-num(1920)
+@mixin media-up-num($num: 1920)
+    @media screen and (min-width: ($num * 1px))
+        @content
+
+
+// +media-down(sm)
+@mixin media-down($breakpoint)
+    $breakpoint-value: map-get($breakpoints, $breakpoint)
+    @media screen and (max-width: ($breakpoint-value - 1))
+      @content
+
+
+// +media-up-num(1234)
+@mixin media-down-num($num)
+    @media screen and (max-width: ($num * 1px - 1))
+        @content
+
+
+// +media-between(sm, md)
+@mixin media-between($lower, $upper)
+    $lower-breakpoint: map-get($breakpoints, $lower)
+    $upper-breakpoint: map-get($breakpoints, $upper)
+
+    @media screen and (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1))
+        @content
+
+
+
+// 觸控裝置
+@mixin is-touch
+    @media (hover: none)
+        @content
+
+
+// 非觸控裝置
+@mixin not-touch
+    @media (hover: hover)
+        @content
+
+
+/*
+ * font
+ */
+// +fz(16, 16)
+@mixin fz($size, $html-fz: 16)
+    font-size: math.div($size, $html-fz) * 1rem
+
+@mixin fz-vw($size)
+    font-size: px2vw($size, $design-mw)
+
+@mixin fz-vw-mob($size)
+    font-size: px2vw($size, $design-mw-mob)
+
+// +ls(15, 22)
+@mixin ls($ls, $fz)
+    letter-spacing: math.div($ls, $fz) * 1em
+
+@mixin ls-normal
+    letter-spacing: normal
+
+
+// +ls-num(0.075)
+@mixin ls-num($ls)
+    letter-spacing: $ls * 1em
+
+
+// +lh(15,22)
+@mixin lh($lh, $fz)
+    line-height: math.div($lh, $fz)
+
+
+// +lh-num(1.8)
+@mixin lh-num($lh: 1.2)
+    line-height: $lh
+
+
+// +fw(500)
+//
+// - 100 ( Thin, Hairline )
+// - 200 ( Extra Light, Ultra Light )
+// - 300 ( Light )
+// - 400 ( Normal, Regular )
+// - 500 ( Medium )
+// - 600 ( Semi Bold, Demi Bold )
+// - 700 ( Bold )
+// - 800 ( Extra Bold, Ultra Bold )
+// - 900 ( Black, Heavy )
+// - 950 ( Extra Black, Ultra Black )
+@mixin fw($weight: 400)
+    font-weight: $weight
+
+
+/*
+ * margin / em
+ */
+// +mt-em(15, 22)
+@mixin mt-em($m, $fz)
+    margin-top: math.div($m, $fz) * 1em
+
+
+// +mb-em(15, 22)
+@mixin mb-em($m, $fz)
+    margin-bottom: math.div($m, $fz) * 1em
+
+
+// +ml-em(15, 22)
+@mixin ml-em($m, $fz)
+    margin-left: math.div($m, $fz) * 1em
+
+
+// +mr-em(15, 22)
+@mixin mr-em($m, $fz)
+    margin-right: math.div($m, $fz) * 1em
+
+
+
+/*
+ * padding / em
+ */
+// +pt-em(15, 22)
+@mixin pt-em($m, $fz)
+    padding-top: math.div($m, $fz) * 1em
+
+
+// +pb-em(15, 22)
+@mixin pb-em($m, $fz)
+    padding-bottom: math.div($m, $fz) * 1em
+
+
+// +pl-em(15, 22)
+@mixin pl-em($m, $fz)
+    padding-left: math.div($m, $fz) * 1em
+
+
+// +pr-em(15, 22)
+@mixin pr-em($m, $fz)
+    padding-right: math.div($m, $fz) * 1em
+
+
+/*
+ * 其他
+ */
+// 清除 A 連結的預設
+@mixin a-reset
+    text-decoration: none
+    &:active, &:hover, &:visited, &:focus
+        text-decoration: none
+        outline: 0
+
+
+
+
+/*  ===== 排版相關 ===== */
+// +poa-center
+@mixin poa-center
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+
+// +pof-center
+@mixin pof-center
+    position: fixed
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+
+// +d-flex(center,center,row)
+@mixin d-flex($j-c: flex-start, $a-i: stretch, $d: row)
+    display: flex
+    justify-content: $j-c
+    align-items: $a-i
+    flex-direction: $d
+
+
+
+// 蓋一層連結在上層給點
+@mixin a-link-add
+    a
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+
+
+// 比例圖
+@mixin aspect-ratio($rw, $rh, $w: 100%)
+    background: no-repeat center / cover
+    &::after
+        content: ''
+        display: block
+        padding-top: calc(#{$w} / #{$rw} * #{$rh})
+
+
+// 最大寬度置中
+@mixin mw-center($mw: 1420)
+    max-width: $mw * 1px
+    margin: auto
+
+
+// +ellipsis(3) 超過幾行就 ...
+@mixin ellipsis($line: 1)
+    overflow : hidden
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-line-clamp: $line
+    -webkit-box-orient: vertical
+    text-align: left
+
+
+// 捲軸設定
+@mixin scrollbar
+    &::-webkit-scrollbar
+        width: 7px
+
+    &::-webkit-scrollbar-button
+        width: 7px
+        height: 5px
+
+    &::-webkit-scrollbar-track
+        background-color: rgba(#eee, 0)
+        border: 0
+        border-radius: 5px
+
+    &::-webkit-scrollbar-thumb
+        background-color: rgba(#d8d8d8, 0.3)
+        border: 0
+        border-radius: 5px
+
+    &::-webkit-scrollbar-thumb:hover
+        background-color: rgba(#d8d8d8, 0.5)
+
+
+
+// 隱藏捲軸
+@mixin scrollbar-hidden
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar-track
+        background-color: transparent
+
+    &::-webkit-scrollbar-thumb
+        background-color: transparent
+
+    &::-webkit-scrollbar-thumb:hover
+        background-color: transparent
+
+    &::-webkit-scrollbar
+        background-color: transparent
+        display: none
+
+

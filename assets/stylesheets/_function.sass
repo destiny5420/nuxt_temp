@@ -1,0 +1,39 @@
+@use "sass:math"
+@import '~assets/stylesheets/_config.scss'
+
+/**
+ * 字體大小單位轉換
+ */
+@function px2vw($px, $design-w: 1920)
+    @return math.div($px, $design-w) * 100 * 1vw
+
+@function px2vh($px, $design-h: 960)
+    @return math.div($px, $design-h) * 100 * 1vh
+
+@function vw2px($vw, $design-w: 1920)
+    @return $vw * math.div($design-w, 100) * 1px
+
+@function vh2px($vw, $design-h: 960)
+    @return $vw * math.div($design-w, 100) * 1px
+
+@function pt2px($pt)
+    @return math.div($pt * 4, 3)
+
+/**
+ * 百分比轉換
+ */
+@function percent($child, $parent)
+    @return math.div($child, $parent) * 100%
+
+
+/*
+ *  顏色獲取 colors(main)
+ */
+@function colors($color-name)
+    @return map-get($colors, $color-name)
+
+/*
+ * HTML 字體大小獲取: html-fz(l)
+ */
+@function html-fz($size)
+    @return map-get($html-fz, $size)

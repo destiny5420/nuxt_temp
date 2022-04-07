@@ -1,0 +1,98 @@
+/**
+ * DEBUG
+ */
+// *
+//     outline: 1px solid skyblue
+
+
+/**
+ * NORMAL
+ */
+body, html,
+div, p, section,
+img, svg,
+ul, li, dl, dt, dd,
+h1, h2, h3, h4, h5, h6,
+input, label, form, button, textarea, a,
+span
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+h1, h2, h3, h4, h5, h6
+    +fw(400)
+
+html
+    font-size: html-fz(l) * 1px
+    +media-down(lg)
+        font-size: html-fz(m) * 1px
+    +media-down(sm)
+        font-size: html-fz(s) * 1px
+
+
+body
+    overflow-x: hidden
+    word-break: break-word
+    -webkit-font-smoothing: antialiased
+    image-rendering: auto
+    touch-action: manipulation
+    -moz-osx-font-smoothing: grayscale
+
+
+ul, li
+    list-style: none
+
+a
+    text-decoration: none
+    &:hover
+        text-decoration: none
+
+input
+    background-color: initial
+    border: 0
+    outline: none
+    display: block
+    width: 100%
+    font-size: 16px
+
+textarea
+    background-color: transparent
+    width: 100%
+    height: 100%
+    border: 0
+    resize: none
+    +scrollbar-hidden
+    &:focus
+        outline: none
+
+button
+    background-color: transparent
+    border: 0
+    outline: none
+
+    &:focus
+        outline: none
+
+img, svg
+    max-width: 100%
+    vertical-align: middle
+
+
+/**
+ * SWIPER
+ */
+// .swiper-pagination
+//     display: flex
+//     justify-content: center
+
+// .swiper-pagination-bullet
+//     border-radius: 50%
+//     border: px2vw(1, $design-mw-mob) solid colors(orange3)
+//     display: block
+//     &::after
+//         content: ''
+//         display: block
+//         padding-top: 100%
+
+// .swiper-pagination-bullet-active
+//     background-color: colors(orange3)

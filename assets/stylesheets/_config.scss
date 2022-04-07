@@ -1,0 +1,25 @@
+$breakpoints: (
+    xs: 320px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1440px
+);
+
+
+$colors: (
+    black: black
+);
+
+
+$html-fz: (
+    l:  16,
+    m:  16,
+    s:  16
+);
+
+
+$mob: md;
+$design-mw: 1440;
+$design-mw-mob: 375;
